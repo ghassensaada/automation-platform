@@ -12,19 +12,19 @@ RUN npm run build
 # ===== BACKEND BUILD =====
 FROM node:18-bullseye-slim
 
-WORKDIR /app
-
-# Copy backend package files and install deps first
-COPY backend/package*.json ./backend/
-RUN cd backend && npm install --legacy-peer-deps
-
-# Copy the backend code and frontend build
-COPY backend/ ./backend/
-COPY --from=frontend-build /app/frontend/dist ./backend/public
-
 WORKDIR /app/backend
 
 ENV NODE_ENV=production
+ENV NODE_OPTIONS=--max-old-space-size=256
+
+# Backend install
+COPY backend/package*.json ./
+RUN npm install --legacy-peer-deps
+
+# Copy backend code and frontend build
+COPY backend/ ./
+COPY --from=frontend-build /app/frontend/dist ./public
+
 EXPOSE 3000
 
 CMD ["npm", "start"]
