@@ -6,7 +6,8 @@ exports.redirectToFacebook = (req, res) => {
   const redirectUri = process.env.FB_REDIRECT_URI;
   const clientId = process.env.FB_CLIENT_ID;
   const scope = 'pages_show_list,pages_manage_posts,instagram_basic,instagram_content_publish';
-  const fbAuthUrl = \`https://www.facebook.com/v18.0/dialog/oauth?client_id=\${clientId}&redirect_uri=\${redirectUri}&scope=\${scope}&response_type=code\`;
+  const fbAuthUrl = `https://www.facebook.com/v18.0/dialog/oauth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code`;
+
   res.redirect(fbAuthUrl);
 };
 
