@@ -1,0 +1,11 @@
+<% layout('layout') -%>
+
+<div class="max-w-md mx-auto mt-10 bg-white p-6 rounded shadow">
+  <h2 class="text-xl font-bold mb-4">Login</h2>
+  <form method="POST" action="/login" class="space-y-4">
+    <input name="email" placeholder="Email" required class="w-full p-2 border rounded" />
+    <input type="password" name="password" placeholder="Password" required class="w-full p-2 border rounded" />
+    <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded">Login</button>
+  </form>
+  <p class="mt-4 text-center">Don't have an account? <a href="/register" class="text-blue-500">Register</a></p>
+</div>

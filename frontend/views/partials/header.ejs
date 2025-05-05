@@ -1,0 +1,12 @@
+<header><nav>
+  <% if (typeof user !== 'undefined') { %>
+    Welcome, <%= user.name %> | <a href="/logout">Logout</a><br/>
+  <% } else { %>
+    <a href="/login">Login</a> | <a href="/register">Register</a><br/>
+  <% } %>
+
+  <a href="/dashboard">Dashboard</a> |
+  <a href="/schedule">Schedule</a> |
+  <a href="/analytics">Analytics</a> |
+  <a href="/ai-prompts">AI Prompts</a>
+</nav><hr/></header>

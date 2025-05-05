@@ -1,0 +1,29 @@
+<% layout('layout') -%>
+
+<h2 class="text-xl font-bold mb-4">AI Prompts</h2>
+
+<form method="POST" action="/ai-prompts" class="space-y-4">
+  <textarea name="prompt" placeholder="Enter your prompt..." required class="w-full border rounded p-2"></textarea>
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Generate</button>
+</form>
+
+<% if (generatedText) { %>
+  <div class="bg-green-100 text-green-900 p-4 mt-4 rounded">
+    <strong>Result:</strong><br/>
+    <%= generatedText %>
+  </div>
+<% } %>
+
+<% if (history && history.length > 0) { %>
+  <div class="mt-6">
+    <h3 class="text-lg font-semibold mb-2">Prompt History</h3>
+    <ul class="space-y-2">
+      <% history.forEach(item => { %>
+        <li class="bg-white dark:bg-gray-700 p-3 rounded shadow">
+          <strong>Prompt:</strong> <%= item.prompt %><br/>
+          <strong>Result:</strong> <%= item.result %>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>

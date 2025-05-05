@@ -1,0 +1,150 @@
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f9f9fb;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid #e0e0e0;
+  padding: 20px;
+}
+
+.sidebar .user-info {
+  margin-bottom: 30px;
+}
+
+.sidebar .user-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 12px 0;
+  color: #333;
+  text-decoration: none;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.sidebar nav a:hover {
+  color: #0066ff;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Main Content */
+.main {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Connections */
+.connections .platform {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.connections .platform:last-child {
+  border-bottom: none;
+}
+
+.status {
+  color: green;
+  font-size: 14px;
+}
+
+.button {
+  background-color: #0066ff;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background-color: #0055cc;
+}
+
+/* Uploads + Schedule */
+.uploads, .schedule {
+  margin-top: 20px;
+}
+
+.uploads .row, .schedule .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.uploads .row:last-child, .schedule .row:last-child {
+  border-bottom: none;
+}
+
+.status.failed {
+  color: red;
+  font-weight: 600;
+}
+
+.icon {
+  margin-left: 6px;
+  font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .main {
+    padding: 10px;
+  }
+}

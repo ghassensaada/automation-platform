@@ -1,0 +1,46 @@
+<% layout('layout') -%>
+
+<h2 class="text-xl font-bold mb-4">Schedule a Post</h2>
+
+<form method="POST" action="/schedule" class="space-y-4" onsubmit="return validateForm()">
+  <textarea name="content" placeholder="Post content..." required class="w-full border rounded p-2"></textarea>
+  <select name="platform" required class="w-full border rounded p-2">
+    <option value="">Select Platform</option>
+    <option value="facebook">Facebook</option>
+    <option value="instagram">Instagram</option>
+    <option value="youtube">YouTube</option>
+    <option value="tiktok">TikTok</option>
+    <option value="x">X</option>
+  </select>
+  <input type="datetime-local" name="scheduledAt" required class="w-full border rounded p-2" />
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Add Post</button>
+</form>
+
+<script>
+  function validateForm() {
+    const content = document.querySelector('[name="content"]').value.trim();
+    const platform = document.querySelector('[name="platform"]').value;
+    const time = document.querySelector('[name="scheduledAt"]').value;
+
+    if (!content || !platform || !time) {
+      alert("All fields are required.");
+      return false;
+    }
+    return true;
+  }
+</script>
+
+<h3 class="text-lg font-semibold mt-8 mb-2">Scheduled Posts</h3>
+<ul class="space-y-2">
+  <% posts.forEach(post => { %>
+    <li class="bg-white p-3 rounded shadow">
+      <strong><%= post.platform %>:</strong> <%= post.content %>
+      <br/>Scheduled at: <%= new Date(post.scheduledAt).toLocaleString() %>
+      <form method="POST" action="/schedule/delete/<%= post._id %>" class="inline">
+        <button class="text-red-500 ml-2">Delete</button>
+      </form>
+      <!-- Edit button (future) -->
+      <!-- <button class="text-blue-500 ml-2">Edit</button> -->
+    </li>
+  <% }) %>
+</ul>

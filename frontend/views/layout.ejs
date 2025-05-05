@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Automation Platform</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/socket.js"></script>
+    <script>
+      function toggleMobileMenu() {
+        const nav = document.getElementById('sidebar');
+        nav.classList.toggle('hidden');
+      }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <header class="flex items-center justify-between bg-white shadow px-4 py-3">
+      <div>
+        <button onclick="toggleMobileMenu()" class="md:hidden">&#9776;</button>
+        <span class="font-bold text-lg">Automation Platform</span>
+      </div>
+      <% if (user) { %>
+        <div>
+          Welcome, <%= user.name || user.email %> |
+          <a href="/logout" class="text-blue-500">Logout</a>
+        </div>
+      <% } %>
+    </header>
+
+    <% if (success) { %>
+      <div class="bg-green-100 text-green-800 p-2 text-center"><%= success %></div>
+    <% } %>
+    <% if (error) { %>
+      <div class="bg-red-100 text-red-800 p-2 text-center"><%= error %></div>
+    <% } %>
+
+    <div class="flex">
+      <nav id="sidebar" class="w-64 bg-white p-4 hidden md:block">
+        <ul class="space-y-2">
+          <li><a href="/dashboard" class="block hover:text-blue-500">Dashboard</a></li>
+          <li><a href="/schedule" class="block hover:text-blue-500">Schedule</a></li>
+          <li><a href="/analytics" class="block hover:text-blue-500">Analytics</a></li>
+          <li><a href="/ai-prompts" class="block hover:text-blue-500">AI Prompts</a></li>
+        </ul>
+      </nav>
+      <main class="flex-1 p-4">
+        <%- body %>
+      </main>
+    </div>
+  </body>
+</html>

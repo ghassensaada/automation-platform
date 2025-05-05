@@ -1,0 +1,46 @@
+<% layout('layout') -%>
+
+<h1 class="text-2xl font-bold mb-4">Analytics Overview</h1>
+
+<div class="bg-white p-6 rounded shadow">
+  <canvas id="platformChart" height="120"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  fetch('/api/analytics/summary')
+    .then(res => res.json())
+    .then(data => {
+      const summary = data.data;
+      const labels = summary.map(s => s._id);
+      const reach = summary.map(s => s.totalReach);
+      const likes = summary.map(s => s.totalLikes);
+      const shares = summary.map(s => s.totalShares);
+      const views = summary.map(s => s.totalViews);
+      const comments = summary.map(s => s.totalComments);
+
+      const ctx = document.getElementById('platformChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [
+            { label: 'Reach', data: reach, backgroundColor: 'rgba(75, 192, 192, 0.5)' },
+            { label: 'Likes', data: likes, backgroundColor: 'rgba(153, 102, 255, 0.5)' },
+            { label: 'Shares', data: shares, backgroundColor: 'rgba(255, 159, 64, 0.5)' },
+            { label: 'Views', data: views, backgroundColor: 'rgba(54, 162, 235, 0.5)' },
+            { label: 'Comments', data: comments, backgroundColor: 'rgba(255, 99, 132, 0.5)' }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Performance by Platform'
+            }
+          }
+        }
+      });
+    });
+</script>
